@@ -27,7 +27,8 @@
 import config as cf
 from App import model
 import csv
-
+import tracemalloc
+import time
 """
 El controlador se encarga de mediar entre la vista y el modelo.
 Existen algunas operaciones en las que se necesita invocar
@@ -39,6 +40,9 @@ recae sobre el controlador.
 # ___________________________________________________
 #  Inicializacion del catalogo
 # ___________________________________________________
+# Funciones para la carga de datos
+
+
 
 
 def init():
@@ -111,7 +115,19 @@ def minimumCostPaths(analyzer, initialStation):
     Calcula todos los caminos de costo minimo de initialStation a todas
     las otras estaciones del sistema
     """
-    return model.minimumCostPaths(analyzer, initialStation)
+    delta_time = -1.0
+
+    tracemalloc.start()
+    start_time = getTime()
+
+    resp = model.minimumCostPaths(analyzer, initialStation)
+
+    stop_time = getTime()
+    tracemalloc.stop()
+
+    delta_time = stop_time - start_time
+
+    return delta_time
 
 
 def hasPath(analyzer, destStation):
@@ -134,3 +150,9 @@ def servedRoutes(analyzer):
     """
     maxvert, maxdeg = model.servedRoutes(analyzer)
     return maxvert, maxdeg
+
+def getTime():
+    """
+    devuelve el instante tiempo de procesamiento en milisegundos
+    """
+    return float(time.perf_counter()*1000)

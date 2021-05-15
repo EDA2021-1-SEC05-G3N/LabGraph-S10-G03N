@@ -83,7 +83,7 @@ def optionThree(cont):
 
 
 def optionFour(cont, initialStation):
-    controller.minimumCostPaths(cont, initialStation)
+    print(controller.minimumCostPaths(cont, initialStation))
 
 
 def optionFive(cont, destStation):

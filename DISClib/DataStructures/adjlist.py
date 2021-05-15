@@ -64,7 +64,7 @@ def newGraph(size, cmpfunction, directed):
                                        maptype='PROBING',
                                        comparefunction=cmpfunction)
         if (directed):
-            graph['indegree'] = map.newMap(numelements=size,
+            graph['indegree'] = map.newMap(numelements=size ,
                                            maptype='PROBING',
                                            comparefunction=cmpfunction)
         return graph

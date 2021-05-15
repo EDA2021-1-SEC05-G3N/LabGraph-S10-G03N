@@ -27,7 +27,6 @@
 import config as cf
 from App import model
 import csv
-import tracemalloc
 import time
 """
 El controlador se encarga de mediar entre la vista y el modelo.
@@ -117,17 +116,15 @@ def minimumCostPaths(analyzer, initialStation):
     """
     delta_time = -1.0
 
-    tracemalloc.start()
     start_time = getTime()
 
     resp = model.minimumCostPaths(analyzer, initialStation)
 
     stop_time = getTime()
-    tracemalloc.stop()
 
     delta_time = stop_time - start_time
 
-    return delta_time
+    return round(delta_time,2)
 
 
 def hasPath(analyzer, destStation):
